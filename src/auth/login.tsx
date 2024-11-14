@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+import { Loader2, LockKeyhole, Mail } from "lucide-react";
 const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen ">
@@ -11,6 +11,7 @@ const Login = () => {
         <div>
           <Label>Email</Label>
           <Input type="email" placeholder="Enter Your Email " />
+          <Mail />
           <Label>Password</Label>
           <Input type="Password" placeholder="Enter Your Password " />
         </div>
