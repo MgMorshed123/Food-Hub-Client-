@@ -8,12 +8,26 @@ const Login = () => {
         <div className="mb-4">
           <h1>Food Hub</h1>
         </div>
+
+        <div className="mb-4">
+          <div className="relative">
+            <Label>Email</Label>
+            <Input
+              type="email"
+              placeholder="Enter Your Email "
+              className="pl-10 focus-visible:ring-1"
+            />
+            <Mail className="absolute inset-y-8 left-2  text-gray-500 pointer-events-none" />
+          </div>
+        </div>
         <div>
-          <Label>Email</Label>
-          <Input type="email" placeholder="Enter Your Email " />
-          <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
           <Label>Password</Label>
-          <Input type="Password" placeholder="Enter Your Password " />
+          <Input
+            type="Password"
+            placeholder="Enter Your Password "
+            className="pl-10 focus-visible:ring-1"
+          />
+          <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
         </div>
       </form>
     </div>
