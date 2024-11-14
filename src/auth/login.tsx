@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, LockKeyhole, Mail } from "lucide-react";
+import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen ">
@@ -28,6 +29,12 @@ const Login = () => {
             className="pl-10 focus-visible:ring-1"
           />
           <LockKeyhole className="absolute inset-y-8 left-2 text-gray-500 pointer-events-none" />
+        </div>
+
+        <div className="mb-10">
+          <Button className="bg-orange hover:bg-hoverOrange w-full">
+            Login
+          </Button>
         </div>
       </form>
     </div>
