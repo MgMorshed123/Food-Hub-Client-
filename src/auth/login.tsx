@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="flex items-center justify-center min-h-screen ">
       <form className="md:p-8 w-full max-w-md md:border  border-gray-200 rounded-lg mx-4">
@@ -32,10 +37,34 @@ const Login = () => {
         </div>
 
         <div className="mb-10">
-          <Button className="bg-orange hover:bg-hoverOrange w-full">
-            Login
-          </Button>
+          {loading ? (
+            <Button disabled className="w-full bg-orange hover:bg-hoverOrange">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="w-full bg-orange hover:bg-hoverOrange"
+            >
+              Login
+            </Button>
+          )}
+          <div className="mt-4">
+            <Link
+              to="/forgot-password"
+              className="hover:text-blue-500 hover:underline"
+            >
+              Forgot Password
+            </Link>
+          </div>
         </div>
+        <Separator></Separator>
+        <p className="mt-2">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-500">
+            Signup
+          </Link>
+        </p>
       </form>
     </div>
   );
