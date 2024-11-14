@@ -20,14 +20,14 @@ const Login = () => {
             <Mail className="absolute inset-y-8 left-2  text-gray-500 pointer-events-none" />
           </div>
         </div>
-        <div>
+        <div className="relative">
           <Label>Password</Label>
           <Input
             type="Password"
             placeholder="Enter Your Password "
             className="pl-10 focus-visible:ring-1"
           />
-          <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+          <LockKeyhole className="absolute inset-y-8 left-2 text-gray-500 pointer-events-none" />
         </div>
       </form>
     </div>
