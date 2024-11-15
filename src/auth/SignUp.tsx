@@ -2,24 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { SignupInputState } from "@/schema/userSchema";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
-type SignUpInputState = {
-  fullName: string;
-  contact: string;
-  email: string;
-  password: string;
-};
-
 const Signup = () => {
   const [loading, setLoading] = useState(false);
 
-  const [input, setInput] = useState<SignUpInputState>({
+  const [input, setInput] = useState<SignupInputState>({
     email: "",
     password: "",
-    fullName: "",
+    fullname: "",
     contact: "",
   });
 
@@ -48,9 +42,9 @@ const Signup = () => {
           <div className="relative">
             <Label>fullname</Label>
             <Input
-              type="fullName"
-              name="fullName"
-              value={input.fullName}
+              type="fullname"
+              name="fullname"
+              value={input.fullname}
               onChange={changeEventHandler}
               placeholder="Enter Your Email "
               className="pl-10 focus-visible:ring-1"
