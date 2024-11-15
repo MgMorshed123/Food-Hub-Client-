@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import SignUp from "./auth/SignUp";
+import ForgotPassword from "./auth/ForgotPassword";
 
 const appRouter = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp></SignUp>,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword></ForgotPassword>,
   },
 ]);
 
