@@ -46,6 +46,21 @@ const Signup = () => {
 
         <div className="mb-4">
           <div className="relative">
+            <Label>fullname</Label>
+            <Input
+              type="fullName"
+              name="fullName"
+              value={input.fullName}
+              onChange={changeEventHandler}
+              placeholder="Enter Your Email "
+              className="pl-10 focus-visible:ring-1"
+            />
+            <Mail className="absolute inset-y-8 left-2  text-gray-500 pointer-events-none" />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <div className="relative">
             <Label>Email</Label>
             <Input
               type="email"
@@ -69,6 +84,18 @@ const Signup = () => {
             className="pl-10 focus-visible:ring-1"
           />
           <LockKeyhole className="absolute inset-y-8 left-2 text-gray-500 pointer-events-none" />
+        </div>
+
+        <div className="relative">
+          <Label>Contact</Label>
+          <Input
+            type="contact"
+            name="contact"
+            value={input.contact}
+            onChange={changeEventHandler}
+            placeholder="Enter Your contact "
+            className="pl-10 focus-visible:ring-1"
+          />
         </div>
 
         <div className="mb-10">
@@ -95,9 +122,9 @@ const Signup = () => {
         </div>
         <Separator></Separator>
         <p className="mt-2">
-          Don't have an account?{" "}
-          <Link to="/signup" className="text-blue-500">
-            Signup
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500">
+            Login
           </Link>
         </p>
       </form>
