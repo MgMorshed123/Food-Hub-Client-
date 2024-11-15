@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 type LoginInputState = {
@@ -19,9 +19,23 @@ const Login = () => {
     password: "",
   });
 
+  const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setInput({ ...input, [name]: value });
+  };
+
+  const LoginFormHandler = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(input);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen ">
-      <form className="md:p-8 w-full max-w-md md:border  border-gray-200 rounded-lg mx-4">
+      <form
+        onSubmit={LoginFormHandler}
+        className="md:p-8 w-full max-w-md md:border  border-gray-200 rounded-lg mx-4"
+      >
         <div className="mb-4">
           <h1>Food Hub</h1>
         </div>
@@ -31,6 +45,9 @@ const Login = () => {
             <Label>Email</Label>
             <Input
               type="email"
+              name="email"
+              value={input.email}
+              onChange={changeEventHandler}
               placeholder="Enter Your Email "
               className="pl-10 focus-visible:ring-1"
             />
@@ -41,6 +58,9 @@ const Login = () => {
           <Label>Password</Label>
           <Input
             type="Password"
+            name="password"
+            value={input.password}
+            onChange={changeEventHandler}
             placeholder="Enter Your Password "
             className="pl-10 focus-visible:ring-1"
           />
