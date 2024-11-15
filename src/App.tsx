@@ -9,6 +9,7 @@ import {
 import MainLayout from "./layout/MainLayout";
 import SignUp from "./auth/SignUp";
 import ForgotPassword from "./auth/ForgotPassword";
+import ResetPassword from "./auth/ResetPassword";
 
 const appRouter = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/forgot-password",
     element: <ForgotPassword></ForgotPassword>,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword></ResetPassword>,
   },
 ]);
 
