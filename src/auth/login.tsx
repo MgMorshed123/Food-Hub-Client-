@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { LoginInputState } from "@/schema/userSchema";
+import { LoginInputState, userLoginSchema } from "@/schema/userSchema";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
@@ -54,6 +54,9 @@ const Login = () => {
               className="pl-10 focus-visible:ring-1"
             />
             <Mail className="absolute inset-y-8 left-2  text-gray-500 pointer-events-none" />
+            {errors && (
+              <span className="text-xs text-red-500">{errors.email}</span>
+            )}
           </div>
         </div>
         <div className="relative">
@@ -67,6 +70,9 @@ const Login = () => {
             className="pl-10 focus-visible:ring-1"
           />
           <LockKeyhole className="absolute inset-y-8 left-2 text-gray-500 pointer-events-none" />
+          {errors && (
+            <span className="text-xs text-red-500">{errors.password}</span>
+          )}
         </div>
 
         <div className="mb-10">
