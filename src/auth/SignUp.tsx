@@ -6,7 +6,9 @@ import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
-type LoginInputState = {
+type SignUpInputState = {
+  fullName: string;
+  contact: string;
   email: string;
   password: string;
 };
@@ -14,9 +16,11 @@ type LoginInputState = {
 const Signup = () => {
   const [loading, setLoading] = useState(false);
 
-  const [input, setInput] = useState<LoginInputState>({
+  const [input, setInput] = useState<SignUpInputState>({
     email: "",
     password: "",
+    fullName: "",
+    contact: "",
   });
 
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
