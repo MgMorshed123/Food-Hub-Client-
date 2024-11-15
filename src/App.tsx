@@ -10,6 +10,7 @@ import MainLayout from "./layout/MainLayout";
 import SignUp from "./auth/SignUp";
 import ForgotPassword from "./auth/ForgotPassword";
 import ResetPassword from "./auth/ResetPassword";
+import VerifyEmail from "./auth/VerifyEmail";
 
 const appRouter = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword></ResetPassword>,
+  },
+  {
+    path: "/verify-email",
+    element: <VerifyEmail></VerifyEmail>,
   },
 ]);
 
