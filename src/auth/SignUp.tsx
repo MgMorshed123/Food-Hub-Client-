@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { SignupInputState } from "@/schema/userSchema";
+import { SignupInputState, userSignupSchema } from "@/schema/userSchema";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
@@ -17,21 +17,28 @@ const Signup = () => {
     contact: "",
   });
 
+  const [errors, setErrors] = useState<Partial<SignupInputState>>({});
+
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setInput({ ...input, [name]: value });
   };
 
-  const LoginFormHandler = (e: FormEvent) => {
+  const SignupFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log(input);
+
+    const result = userSignupSchema.safeParse(input);
+
+    if (!result.success) {
+      const fieldErrors = result.error.formErrors.fieldErrors;
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
       <form
-        onSubmit={LoginFormHandler}
+        onSubmit={SignupFormHandler}
         className="md:p-8 w-full max-w-md md:border  border-gray-200 rounded-lg mx-4"
       >
         <div className="mb-4">
@@ -118,7 +125,7 @@ const Signup = () => {
         <p className="mt-2">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-500">
-            Login
+            SignUp
           </Link>
         </p>
       </form>
