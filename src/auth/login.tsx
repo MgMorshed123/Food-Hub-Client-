@@ -5,8 +5,19 @@ import { Separator } from "@/components/ui/separator";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+type LoginInputState = {
+  email: string;
+  password: string;
+};
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
+
+  const [input, setInput] = useState<LoginInputState>({
+    email: "",
+    password: "",
+  });
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
