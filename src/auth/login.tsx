@@ -14,7 +14,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const [errors, setErrors] = useState<Partial<LoginInputState>>({});
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -23,7 +23,13 @@ const Login = () => {
 
   const LoginFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log(input);
+
+    const result = userLoginSchema.safeParse(input);
+    if (!result.success) {
+      const fieldErrors = result.error.formErrors.fieldErrors;
+      setErrors(fieldErrors as Partial<LoginInputState>);
+      return;
+    }
   };
 
   return (

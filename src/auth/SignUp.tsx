@@ -124,7 +124,7 @@ const Signup = () => {
               type="submit"
               className="w-full bg-orange hover:bg-hoverOrange"
             >
-              Login
+              SignUp
             </Button>
           )}
           <div className="mt-4">
