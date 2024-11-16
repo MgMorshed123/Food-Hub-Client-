@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Loader2, Moon, ShoppingCart, Sun } from "lucide-react";
+import { Loader2, Menu, Moon, ShoppingCart, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   Sheet,
@@ -43,75 +43,77 @@ const Navbar = () => {
             <Link to="/home">Home</Link>
             <Link to="/profile">Profile</Link>
             <Link to="/order/status"> Order</Link>
-          </div>
 
-          {admin && (
-            <Menubar>
-              <MenubarMenu>
-                <MenubarTrigger>Dashboard</MenubarTrigger>
-                <MenubarContent>
-                  <Link to="/admin/restaurant">
-                    <MenubarItem>Restaurant</MenubarItem>{" "}
-                  </Link>
-                  <Link to="/admin/menu">
-                    <MenubarItem>menu</MenubarItem>{" "}
-                  </Link>
-                  <Link to="/order/orders">
-                    <MenubarItem>orders</MenubarItem>{" "}
-                  </Link>
-                </MenubarContent>
-              </MenubarMenu>
-            </Menubar>
-          )}
-        </div>
-        <div className="flex items-center gap-4">
-          <div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">Toggle theme</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Light</DropdownMenuItem>
-                <DropdownMenuItem>Dark</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          <Link to="/cart" className="relative cursor-pointer">
-            <ShoppingCart></ShoppingCart>
-            <Button
-              size={"icon"}
-              className="absolute -inset-y-4 left-2 text-xs rounded-full w-4 h-4 bg-red-600 hover:bg-red-800"
-            >
-              5
-            </Button>
-          </Link>
-
-          <div>
-            <Avatar>
-              <AvatarImage></AvatarImage>
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </div>
-          <div>
-            {loading ? (
-              <Button className="bg-orange hover:bg-hoverOrange">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin">
-                  Please wait{" "}
-                </Loader2>
-              </Button>
-            ) : (
-              <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
+            {admin && (
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>Dashboard</MenubarTrigger>
+                  <MenubarContent>
+                    <Link to="/admin/restaurant">
+                      <MenubarItem>Restaurant</MenubarItem>{" "}
+                    </Link>
+                    <Link to="/admin/menu">
+                      <MenubarItem>menu</MenubarItem>{" "}
+                    </Link>
+                    <Link to="/order/orders">
+                      <MenubarItem>orders</MenubarItem>{" "}
+                    </Link>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
             )}
           </div>
-          {/*  mobile responsivve  */}
-          <div>
-            <MobileNavbar></MobileNavbar>
+          <div className="flex items-center gap-4">
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <span className="sr-only">Toggle theme</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>Light</DropdownMenuItem>
+                  <DropdownMenuItem>Dark</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <Link to="/cart" className="relative cursor-pointer">
+              <ShoppingCart></ShoppingCart>
+              <Button
+                size={"icon"}
+                className="absolute -inset-y-4 left-2 text-xs rounded-full w-4 h-4 bg-red-600 hover:bg-red-800"
+              >
+                5
+              </Button>
+            </Link>
+
+            <div>
+              <Avatar>
+                <AvatarImage></AvatarImage>
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </div>
+            <div>
+              {loading ? (
+                <Button className="bg-orange hover:bg-hoverOrange">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin">
+                    Please wait{" "}
+                  </Loader2>
+                </Button>
+              ) : (
+                <Button className="bg-orange hover:bg-hoverOrange">
+                  LogOut
+                </Button>
+              )}
+            </div>
           </div>
+        </div>
+        {/*  mobile responsivve  */}
+        <div>
+          <MobileNavbar></MobileNavbar>
         </div>
       </div>
     </div>
@@ -124,7 +126,9 @@ const MobileNavbar = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline">
+          <Menu size={"icon"} className="outline-none"></Menu>
+        </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
