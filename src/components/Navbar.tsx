@@ -14,6 +14,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { Moon, ShoppingCart, Sun } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = () => {
   let admin = true;
@@ -76,6 +77,16 @@ const Navbar = () => {
               5
             </Button>
           </Link>
+
+          <div>
+            <Avatar>
+              <AvatarImage></AvatarImage>
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+        <div>
+          <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
         </div>
       </div>
     </div>
