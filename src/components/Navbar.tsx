@@ -44,7 +44,7 @@ const Navbar = () => {
 
   const user = true;
   const logout = true;
-  const loading = true;
+  const loading = false;
   // const { setTheme } = useThemeStore();
 
   const setTheme = "nj";
