@@ -12,17 +12,18 @@ import ForgotPassword from "./auth/ForgotPassword";
 import ResetPassword from "./auth/ResetPassword";
 import VerifyEmail from "./auth/VerifyEmail";
 import Navbar from "./components/Navbar";
+import HereSection from "./components/HeroSection";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Navbar></Navbar>,
-    // children : [
-    //   {
-    //     path : '/login',
-    //     element :<Login></Login>
-    //   }
-    // ]
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <HereSection></HereSection>,
+      },
+    ],
   },
 
   {
