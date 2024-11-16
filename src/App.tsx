@@ -13,6 +13,7 @@ import ResetPassword from "./auth/ResetPassword";
 import VerifyEmail from "./auth/VerifyEmail";
 import Navbar from "./components/Navbar";
 import HereSection from "./components/HeroSection";
+import Profile from "./components/Profile";
 
 const appRouter = createBrowserRouter([
   {
@@ -30,7 +31,10 @@ const appRouter = createBrowserRouter([
     path: "/login",
     element: <Login></Login>,
   },
-
+  {
+    path: "/profile",
+    element: <Profile></Profile>,
+  },
   {
     path: "/signup",
     element: <SignUp></SignUp>,
