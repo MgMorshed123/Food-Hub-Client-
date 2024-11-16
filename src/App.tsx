@@ -24,6 +24,10 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <HereSection></HereSection>,
       },
+      {
+        path: "/profile",
+        element: <Profile></Profile>,
+      },
     ],
   },
 
@@ -31,10 +35,7 @@ const appRouter = createBrowserRouter([
     path: "/login",
     element: <Login></Login>,
   },
-  {
-    path: "/profile",
-    element: <Profile></Profile>,
-  },
+
   {
     path: "/signup",
     element: <SignUp></SignUp>,
