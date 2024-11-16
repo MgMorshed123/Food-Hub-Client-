@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import { Moon, ShoppingCart, Sun } from "lucide-react";
 
 const Navbar = () => {
   let admin = true;
@@ -49,7 +50,7 @@ const Navbar = () => {
             </Menubar>
           )}
         </div>
-        <div>
+        <div className="flex items-center gap-4">
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -60,18 +61,21 @@ const Navbar = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  Light
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  System
-                </DropdownMenuItem>
+                <DropdownMenuItem>Light</DropdownMenuItem>
+                <DropdownMenuItem>Dark</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
+          <Link to="/cart" className="relative cursor-pointer">
+            <ShoppingCart></ShoppingCart>
+            <Button
+              size={"icon"}
+              className="absolute -inset-y-4 left-2 text-xs rounded-full w-4 h-4 bg-red-600 hover:bg-red-800"
+            >
+              5
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
