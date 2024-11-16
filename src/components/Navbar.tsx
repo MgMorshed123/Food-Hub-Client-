@@ -1,9 +1,5 @@
-import React from "react";
-
-type Props = {};
-
-const Navbar = (props: Props) => {
-  return <div>Navbar</div>;
+const Navbar = () => {
+  return <div className="max-w-7xl mx-auto">Navbar</div>;
 };
 
 export default Navbar;
