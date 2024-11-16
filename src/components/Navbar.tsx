@@ -15,6 +15,18 @@ import {
 import { Button } from "./ui/button";
 import { Loader2, Moon, ShoppingCart, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 const Navbar = () => {
   let admin = true;
@@ -85,23 +97,62 @@ const Navbar = () => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>
-        </div>
-        <div>
-          {loading ? (
-            <Button className="bg-orange hover:bg-hoverOrange">
-              <Loader2 className="mr-2 h-4 w-4 animate-spin">
-                Please wait{" "}
-              </Loader2>
-            </Button>
-          ) : (
-            <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
-          )}
+          <div>
+            {loading ? (
+              <Button className="bg-orange hover:bg-hoverOrange">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin">
+                  Please wait{" "}
+                </Loader2>
+              </Button>
+            ) : (
+              <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
+            )}
+          </div>
+          {/*  mobile responsivve  */}
+          <div>
+            <MobileNavbar></MobileNavbar>
+          </div>
         </div>
       </div>
-
-      {/*  mobile responsivve  */}
     </div>
   );
 };
 
 export default Navbar;
+
+const MobileNavbar = () => {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+};
