@@ -13,11 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Moon, ShoppingCart, Sun } from "lucide-react";
+import { Loader2, Moon, ShoppingCart, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = () => {
   let admin = true;
+  let loading = false;
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
@@ -86,9 +87,19 @@ const Navbar = () => {
           </div>
         </div>
         <div>
-          <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
+          {loading ? (
+            <Button className="bg-orange hover:bg-hoverOrange">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin">
+                Please wait{" "}
+              </Loader2>
+            </Button>
+          ) : (
+            <Button className="bg-orange hover:bg-hoverOrange">LogOut</Button>
+          )}
         </div>
       </div>
+
+      {/*  mobile responsivve  */}
     </div>
   );
 };
