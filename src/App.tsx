@@ -14,6 +14,7 @@ import VerifyEmail from "./auth/VerifyEmail";
 import Navbar from "./components/Navbar";
 import HereSection from "./components/HeroSection";
 import Profile from "./components/Profile";
+import SearchPage from "./components/SearchPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "/search/:text",
+        element: <SearchPage></SearchPage>,
       },
     ],
   },
