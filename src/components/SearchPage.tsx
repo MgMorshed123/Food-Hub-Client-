@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FilterPage from "./FilterPage";
 import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Globe, MapPin, X } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent, CardFooter } from "./ui/card";
 import { AspectRatio } from "./ui/aspect-ratio";
 import HeroImage from "../assets/hero_pizza.png";
 
@@ -96,6 +96,13 @@ const SearchPage = () => {
                         )} */}
                   </div>
                 </CardContent>
+                <CardFooter className="p-4 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
+                  <Link to={`/restaurant/${""}`}>
+                    <Button className="bg-orange hover:bg-hoverOrange font-semibold py-2 px-4 rounded-full shadow-md transition-colors duration-200">
+                      View Menus
+                    </Button>
+                  </Link>
+                </CardFooter>
               </Card>
             </div>
           </div>
