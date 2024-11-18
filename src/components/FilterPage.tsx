@@ -1,5 +1,7 @@
 import React from "react";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
 
 export type FilterOptionsState = {
   id: string;
@@ -14,12 +16,27 @@ const filterOptions: FilterOptionsState[] = [
 ];
 
 const FilterPage = () => {
+  const appliedFilterHandler = (value: string) => {};
+
   return (
     <div className="md:w-32">
       <div className="flex items-center justify-between">
         <h1 className="font-medium text-lg">Filter By Cusine </h1>
         <Button variant={"link"}>Reset</Button>
       </div>
+      {filterOptions.map((option) => (
+        <div key={option.id} className="flex items-center space-x-2 my-5">
+          <Checkbox
+            id={option.id}
+            // checked={appliedFilter.includes(option.label)}
+            onClick={() => appliedFilterHandler(option.label)}
+          />
+          {/* imp  */}
+          <Label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            {option.label}
+          </Label>
+        </div>
+      ))}
     </div>
   );
 };
