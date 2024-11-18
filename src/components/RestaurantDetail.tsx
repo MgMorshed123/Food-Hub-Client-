@@ -2,14 +2,15 @@ import { Badge } from "./ui/badge";
 import { Timer } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import AvailableMenu from "./AvailableMenu";
+import HeroImage from "../assets/hero_pizza.png";
 
 const RestaurantDetail = () => {
   const params = useParams();
-  //   const { singleRestaurant, getSingleRestaurant } = useRestaurantStore();
 
+  //   const { singleRestaurant, getSingleRestaurant } = useRestaurantStore();
   //   useEffect(() => {
   //     getSingleRestaurant(params.id!);
-
   //   }, [params.id]);
 
   return (
@@ -17,7 +18,7 @@ const RestaurantDetail = () => {
       <div className="w-full">
         <div className="relative w-full h-32 md:h-64 lg:h-72">
           <img
-            src={"Loading..."}
+            src={HeroImage}
             alt="res_image"
             className="object-cover w-full h-full rounded-lg shadow-lg"
           />
@@ -42,6 +43,7 @@ const RestaurantDetail = () => {
           </div>
         </div>
         {/* {singleRestaurant?.menus && <AvailableMenu menus = {singleRestaurant?.menus!}/>}  */}
+        <AvailableMenu></AvailableMenu>
       </div>
     </div>
   );
