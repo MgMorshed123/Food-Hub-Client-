@@ -4,8 +4,8 @@ import { Input } from "./ui/input";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { X } from "lucide-react";
-import { Card } from "./ui/card";
+import { Globe, MapPin, X } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
 import { AspectRatio } from "./ui/aspect-ratio";
 import HeroImage from "../assets/hero_pizza.png";
 
@@ -61,7 +61,41 @@ const SearchPage = () => {
                       alt=""
                     />
                   </AspectRatio>
+                  <div className="absolute top-2 left-2 bg-white dark:bg-gray-700 bg-opacity-75 rounded-lg px-3 py-1">
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Featured
+                    </span>
+                  </div>
                 </div>
+                <CardContent className="p-4">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    Tandori
+                  </h1>
+                  <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
+                    <MapPin size={16} />
+                    <p className="text-sm">
+                      City: <span className="font-medium">Dhaka</span>
+                    </p>
+                  </div>
+                  <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
+                    <Globe size={16} />
+                    <p className="text-sm">
+                      Country: <span className="font-medium">BD</span>
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-4 flex-wrap">
+                    {/* {restaurant.cuisines.map(
+                          (cuisine: string, idx: number) => (
+                            <Badge
+                              key={idx}
+                              className="font-medium px-2 py-1 rounded-full shadow-sm"
+                            >
+                              {cuisine}
+                            </Badge>
+                          )
+                        )} */}
+                  </div>
+                </CardContent>
               </Card>
             </div>
           </div>
