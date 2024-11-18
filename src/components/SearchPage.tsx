@@ -8,6 +8,7 @@ import { Globe, MapPin, X } from "lucide-react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { AspectRatio } from "./ui/aspect-ratio";
 import HeroImage from "../assets/hero_pizza.png";
+import { Skeleton } from "./ui/skeleton";
 
 const SearchPage = () => {
   const params = useParams();
