@@ -1,5 +1,13 @@
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { Table, TableHead, TableHeader, TableRow } from "./ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 
 const Cart = () => {
   return (
@@ -19,8 +27,20 @@ const Cart = () => {
             <TableHead>Quantity</TableHead>
 
             <TableHead>Total</TableHead>
+            <TableHead className="text-right">Remove</TableHead>
           </TableRow>
         </TableHeader>
+
+        <TableBody>
+          <TableRow>
+            <TableCell>
+              <Avatar>
+                <AvatarImage></AvatarImage>
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
     </div>
   );
