@@ -64,7 +64,106 @@ const AddMenu = () => {
         <h1 className="font-bold md:font-extrabold text-lg md:text-2xl">
           Available Menus
         </h1>
-    
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger>
+            <Button className="bg-orange hover:bg-hoverOrange">
+              <Plus className="mr-2" />
+              Add Menus
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Add A New Menu</DialogTitle>
+              <DialogDescription>
+                Create a menu that will make your restaurant stand out.
+              </DialogDescription>
+            </DialogHeader>
+            <form onSubmit={submitHandler} className="space-y-4">
+              <div>
+                <Label>Name</Label>
+                <Input
+                  type="text"
+                  name="name"
+                  value={input.name}
+                  onChange={changeEventHandler}
+                  placeholder="Enter menu name"
+                />
+                {error && (
+                  <span className="text-xs font-medium text-red-600">
+                    {error.name}
+                  </span>
+                )}
+              </div>
+              <div>
+                <Label>Description</Label>
+                <Input
+                  type="text"
+                  name="description"
+                  value={input.description}
+                  onChange={changeEventHandler}
+                  placeholder="Enter menu description"
+                />
+                {error && (
+                  <span className="text-xs font-medium text-red-600">
+                    {error.description}
+                  </span>
+                )}
+              </div>
+              <div>
+                <Label>Price in (Rupees)</Label>
+                <Input
+                  type="number"
+                  name="price"
+                  value={input.price}
+                  onChange={changeEventHandler}
+                  placeholder="Enter menu price"
+                />
+                {error && (
+                  <span className="text-xs font-medium text-red-600">
+                    {error.price}
+                  </span>
+                )}
+              </div>
+              <div>
+                <Label>Upload Menu Image</Label>
+                <Input
+                  type="file"
+                  name="image"
+                  onChange={(e) =>
+                    setInput({
+                      ...input,
+                      image: e.target.files?.[0] || undefined,
+                    })
+                  }
+                />
+                {error && (
+                  <span className="text-xs font-medium text-red-600">
+                    {error.image?.name}
+                  </span>
+                )}
+              </div>
+              <DialogFooter className="mt-5">
+                {loading ? (
+                  <Button disabled className="bg-orange hover:bg-hoverOrange">
+                    <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                    Please wait
+                  </Button>
+                ) : (
+                  <Button className="bg-orange hover:bg-hoverOrange">
+                    Submit
+                  </Button>
+                )}
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      <EditMenu
+        selectedMenu={selectedMenu}
+        editOpen={editOpen}
+        setEditOpen={setEditOpen}
+      />
     </div>
   );
 };
