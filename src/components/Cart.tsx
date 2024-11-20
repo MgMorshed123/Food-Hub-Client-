@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "./ui/table";
 import { useState } from "react";
+import CheckoutConfirmPage from "./CheckoutConfirmPage";
 // import CheckoutConfirmPage from "./CheckoutConfirmPage";
 // import { useCartStore } from "@/store/useCartStore";
 // import { CartItem } from "@/types/cartType";
@@ -102,7 +103,7 @@ const Cart = () => {
           Proceed To Checkout
         </Button>
       </div>
-      {/* <CheckoutConfirmPage open={open} setOpen={setOpen} /> */}
+      <CheckoutConfirmPage open={open} setOpen={setOpen} />
     </div>
   );
 };
