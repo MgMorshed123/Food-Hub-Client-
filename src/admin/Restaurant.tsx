@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RestaurantFormSchema } from "@/schema/RestaurantFormSchema";
+import {
+  RestaurantFormSchema,
+  restaurantFromSchema,
+} from "@/schema/RestaurantFormSchema";
 // import {
 //   RestaurantFormSchema,
 //   restaurantFromSchema,
@@ -26,9 +29,10 @@ const Restaurant = () => {
     updateRestaurant,
     createRestaurant,
     getRestaurant,
-  } = useRestaurantStore();
+  } = useState();
 
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    /* imp */
     const { name, value, type } = e.target;
     setInput({ ...input, [name]: type === "number" ? Number(value) : value });
   };
