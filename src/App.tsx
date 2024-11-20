@@ -49,7 +49,7 @@ const appRouter = createBrowserRouter([
         element: <Cart></Cart>,
       },
       {
-        path: "/success",
+        path: "/order/status",
         element: <Success></Success>,
       },
       /* admin */
