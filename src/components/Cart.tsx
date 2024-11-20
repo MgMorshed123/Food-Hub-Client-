@@ -90,7 +90,7 @@ const Cart = () => {
         <TableFooter>
           <TableRow className="text-2xl font-bold">
             <TableCell colSpan={5}>Total</TableCell>
-            <TableCell className="text-right">{""}</TableCell>
+            <TableCell className="text-right"> </TableCell>
           </TableRow>
         </TableFooter>
       </Table>
