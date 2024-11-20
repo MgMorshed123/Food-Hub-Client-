@@ -19,7 +19,6 @@ const CheckoutConfirmPage = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const checkoutHandler = () => {};
-
   const changeEventHandler = () => {};
 
   const loading = true;
