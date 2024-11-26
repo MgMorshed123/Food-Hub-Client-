@@ -155,6 +155,25 @@ export const useUserStore = create(
           set({ loading: false });
         }
       },
+      updateProfile: async (input: any) => {
+        try {
+          const response = await axios.put(
+            `${API_END_POINT}/profile/update`,
+            input,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ user: response.data.user, isAuthenticated: true });
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+        }
+      },
     }),
     {
       name: "user", // Name for persisted storage
