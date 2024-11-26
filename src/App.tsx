@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "./components/ui/button";
 import Login from "./auth/login";
 import {
@@ -23,6 +23,7 @@ import AddMenu from "./admin/Admenu";
 import Orders from "./admin/Orders";
 import Success from "./components/Success";
 import { useUserStore } from "./store/useUserStore";
+import Loading from "./components/Loading";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
@@ -149,12 +150,10 @@ const appRouter = createBrowserRouter([
 ]);
 
 const App = () => {
-  const initializeTheme = useThemeStore((state: any) => state.initializeTheme);
   const { checkAuthentication, isCheckingAuth } = useUserStore();
-  // checking auth every time when page is loaded
+
   useEffect(() => {
     checkAuthentication();
-    initializeTheme();
   }, [checkAuthentication]);
 
   if (isCheckingAuth) return <Loading />;
