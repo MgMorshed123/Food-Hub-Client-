@@ -36,6 +36,14 @@ const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
 
+const AuthenticatedUser = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated, user } = useUserStore();
+  if (isAuthenticated && user?.isVerified) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
