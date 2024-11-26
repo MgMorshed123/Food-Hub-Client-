@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { SignupInputState, userSignupSchema } from "@/schema/userSchema";
+import { useUserStore } from "@/store/useUserStore";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
@@ -25,7 +26,9 @@ const Signup = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const SignupFormHandler = (e: FormEvent) => {
+  const { signUp } = useUserStore();
+
+  const SignupFormHandler = async (e: FormEvent) => {
     e.preventDefault();
 
     const result = userSignupSchema.safeParse(input);
@@ -36,6 +39,8 @@ const Signup = () => {
 
       return;
     }
+
+    await signUp(input);
   };
 
   return (
