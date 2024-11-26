@@ -107,6 +107,19 @@ export const useUserStore = create(
           set({ isAuthenticated: false, isCheckingAuth: false });
         }
       },
+      logout: async () => {
+        try {
+          set({ loading: true });
+          const response = await axios.post(`${API_END_POINT}/logout`);
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false, user: null, isAuthenticated: false });
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+          set({ loading: false });
+        }
+      },
     }),
     {
       name: "user", // Name for persisted storage
