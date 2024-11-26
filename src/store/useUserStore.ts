@@ -87,8 +87,24 @@ export const useUserStore = create(
             });
           }
         } catch (error: any) {
-          toast.success(error.response.data.message);
+          toast.error(error.response.data.message);
           set({ loading: false });
+        }
+      },
+
+      checkAuthentication: async () => {
+        try {
+          set({ isCheckingAuth: true });
+          const response = await axios.get(`${API_END_POINT}/check-auth`);
+          if (response.data.success) {
+            set({
+              user: response.data.user,
+              isAuthenticated: true,
+              isCheckingAuth: false,
+            });
+          }
+        } catch (error) {
+          set({ isAuthenticated: false, isCheckingAuth: false });
         }
       },
     }),
