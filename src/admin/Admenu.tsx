@@ -36,7 +36,7 @@ const AddMenu = () => {
   const restaurant = {
     menus: [
       {
-        image: "https://via.placeholder.com/150", // Replace with actual image URL
+        image: "https://via.placeholder.com/150",
         name: "Spaghetti Carbonara",
         description:
           "A classic Italian pasta dish with creamy sauce, pancetta, and parmesan.",
