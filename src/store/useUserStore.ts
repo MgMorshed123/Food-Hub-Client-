@@ -138,6 +138,23 @@ export const useUserStore = create(
           set({ loading: false });
         }
       },
+
+      resetPassword: async (token: string, newPassword: string) => {
+        try {
+          set({ loading: true });
+          const response = await axios.post(
+            `${API_END_POINT}/reset-password/${token}`,
+            { newPassword }
+          );
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false });
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+          set({ loading: false });
+        }
+      },
     }),
     {
       name: "user", // Name for persisted storage
