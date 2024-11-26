@@ -59,7 +59,7 @@ const AdminRoute = ({ children }: { children: React.ReactNode }) => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    element: <ProtectedRoutes>{<MainLayout />}</ProtectedRoutes>,
     children: [
       {
         path: "/",
@@ -89,15 +89,27 @@ const appRouter = createBrowserRouter([
       /* admin */
       {
         path: "admin/restaurant/",
-        element: <Restaurant></Restaurant>,
+        element: (
+          <AdminRoute>
+            <Restaurant></Restaurant>
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/menu",
-        element: <AddMenu></AddMenu>,
+        element: (
+          <AdminRoute>
+            <AddMenu />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/orders",
-        element: <Orders></Orders>,
+        element: (
+          <AdminRoute>
+            <Orders />
+          </AdminRoute>
+        ),
       },
     ],
   },
