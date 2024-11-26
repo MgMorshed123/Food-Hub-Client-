@@ -65,6 +65,32 @@ export const useUserStore = create(
           set({ loading: false });
         }
       },
+
+      verifyEmail: async (verificationCode: string) => {
+        try {
+          set({ loading: true });
+          const response = await axios.post(
+            `${API_END_POINT}/verify-email`,
+            { verificationCode },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({
+              loading: false,
+              user: response.data.user,
+              isAuthenticated: true,
+            });
+          }
+        } catch (error: any) {
+          toast.success(error.response.data.message);
+          set({ loading: false });
+        }
+      },
     }),
     {
       name: "user", // Name for persisted storage
