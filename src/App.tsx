@@ -3,6 +3,7 @@ import { Button } from "./components/ui/button";
 import Login from "./auth/login";
 import {
   createBrowserRouter,
+  Navigate,
   BrowserRouter as Router,
   RouterProvider,
 } from "react-router-dom";
@@ -21,6 +22,19 @@ import Restaurant from "./admin/Restaurant";
 import AddMenu from "./admin/Admenu";
 import Orders from "./admin/Orders";
 import Success from "./components/Success";
+import { useUserStore } from "./store/useUserStore";
+
+const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated, user } = useUserStore();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!user?.isVerified) {
+    return <Navigate to="/verify-email" replace />;
+  }
+  return children;
+};
 
 const appRouter = createBrowserRouter([
   {
