@@ -107,6 +107,7 @@ export const useUserStore = create(
           set({ isAuthenticated: false, isCheckingAuth: false });
         }
       },
+
       logout: async () => {
         try {
           set({ loading: true });
@@ -114,6 +115,23 @@ export const useUserStore = create(
           if (response.data.success) {
             toast.success(response.data.message);
             set({ loading: false, user: null, isAuthenticated: false });
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+          set({ loading: false });
+        }
+      },
+
+      forgotPassword: async (email: string) => {
+        try {
+          set({ loading: true });
+          const response = await axios.post(
+            `${API_END_POINT}/forgot-password`,
+            { email }
+          );
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false });
           }
         } catch (error: any) {
           toast.error(error.response.data.message);
