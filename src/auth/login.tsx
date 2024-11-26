@@ -3,13 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { LoginInputState, userLoginSchema } from "@/schema/userSchema";
+import { useUserStore } from "@/store/useUserStore";
 import { Loader2, LockKeyhole, Mail, SeparatorVertical } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-
+  const { loading, login } = useUserStore();
   const [input, setInput] = useState<LoginInputState>({
     email: "",
     password: "",
@@ -21,7 +21,7 @@ const Login = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const LoginFormHandler = (e: FormEvent) => {
+  const LoginFormHandler = async (e: FormEvent) => {
     e.preventDefault();
 
     const result = userLoginSchema.safeParse(input);
@@ -30,6 +30,8 @@ const Login = () => {
       setErrors(fieldErrors as Partial<LoginInputState>);
       return;
     }
+
+    await login(input);
   };
 
   return (

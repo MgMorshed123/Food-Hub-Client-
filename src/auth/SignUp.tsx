@@ -9,8 +9,6 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
-  const [loading, setLoading] = useState(false);
-
   const [input, setInput] = useState<SignupInputState>({
     email: "",
     password: "",
@@ -26,7 +24,7 @@ const Signup = () => {
     setInput({ ...input, [name]: value });
   };
 
-  const { signUp } = useUserStore();
+  const { signUp, loading } = useUserStore();
 
   const SignupFormHandler = async (e: FormEvent) => {
     e.preventDefault();
