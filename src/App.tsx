@@ -116,16 +116,27 @@ const appRouter = createBrowserRouter([
 
   {
     path: "/login",
-    element: <Login></Login>,
+    element: (
+      <AuthenticatedUser>
+        <Login />
+      </AuthenticatedUser>
+    ),
   },
-
   {
     path: "/signup",
-    element: <SignUp></SignUp>,
+    element: (
+      <AuthenticatedUser>
+        <SignUp />
+      </AuthenticatedUser>
+    ),
   },
   {
     path: "/forgot-password",
-    element: <ForgotPassword></ForgotPassword>,
+    element: (
+      <AuthenticatedUser>
+        <ForgotPassword />
+      </AuthenticatedUser>
+    ),
   },
   {
     path: "/reset-password",
@@ -138,12 +149,19 @@ const appRouter = createBrowserRouter([
 ]);
 
 const App = () => {
+  const initializeTheme = useThemeStore((state: any) => state.initializeTheme);
+  const { checkAuthentication, isCheckingAuth } = useUserStore();
+  // checking auth every time when page is loaded
+  useEffect(() => {
+    checkAuthentication();
+    initializeTheme();
+  }, [checkAuthentication]);
+
+  if (isCheckingAuth) return <Loading />;
   return (
-    <div>
-      <main>
-        <RouterProvider router={appRouter}></RouterProvider>
-      </main>
-    </div>
+    <main>
+      <RouterProvider router={appRouter}></RouterProvider>
+    </main>
   );
 };
 
