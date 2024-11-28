@@ -5,6 +5,7 @@ import {
   RestaurantFormSchema,
   restaurantFromSchema,
 } from "@/schema/RestaurantFormSchema";
+import { useRestaurantStore } from "@/store/useRestaurantStore";
 // import {
 //   RestaurantFormSchema,
 //   restaurantFromSchema,
@@ -23,13 +24,14 @@ const Restaurant = () => {
     imageFile: undefined,
   });
   const [errors, setErrors] = useState<Partial<RestaurantFormSchema>>({});
+
   const {
     loading,
-    restaurant,
-    updateRestaurant,
     createRestaurant,
+    updateRestaurant,
+    restaurant,
     getRestaurant,
-  } = useState();
+  } = useRestaurantStore();
 
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     /* imp */
@@ -46,7 +48,6 @@ const Restaurant = () => {
       setErrors(fieldErrors as Partial<RestaurantFormSchema>);
       return;
     }
-    // add restaurant api implementation start from here
     try {
       const formData = new FormData();
       formData.append("restaurantName", input.restaurantName);
@@ -75,6 +76,7 @@ const Restaurant = () => {
     const fetchRestaurant = async () => {
       await getRestaurant();
       if (restaurant) {
+        console.log("restaurant", restaurant);
         setInput({
           restaurantName: restaurant.restaurantName || "",
           city: restaurant.city || "",

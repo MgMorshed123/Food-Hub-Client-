@@ -46,6 +46,8 @@ const Navbar = () => {
   // const { cart } = useCartStore();
   // const { setTheme } = useThemeStore();
 
+  // console.log(user logout);
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">

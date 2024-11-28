@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import axios from "axios";
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
+import { Fallback } from "@radix-ui/react-avatar";
 
 const API_END_POINT = "http://localhost:4000/api/v1/user";
 axios.defaults.withCredentials = true;
@@ -65,7 +66,7 @@ export const useUserStore = create<UserState>()(
       },
       login: async (input: LoginInputState) => {
         try {
-          set({ loading: true });
+          set({ loading: false });
           const response = await axios.post(`${API_END_POINT}/login`, input, {
             headers: {
               "Content-Type": "application/json",
