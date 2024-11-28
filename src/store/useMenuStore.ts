@@ -38,6 +38,31 @@ export const useMenuStore = create<MenuState>()(
           set({ loading: false });
         }
       },
+      editMenu: async (menuId: string, formData: FormData) => {
+        try {
+          set({ loading: true });
+          const response = await axios.put(
+            `${API_END_POINT}/${menuId}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false, menu: response.data.menu });
+          }
+          // update restaurant menu
+          useRestaurantStore
+            .getState()
+            .updateMenuToRestaurant(response.data.menu);
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+          set({ loading: false });
+        }
+      },
     }),
     {
       name: "menu-name",
