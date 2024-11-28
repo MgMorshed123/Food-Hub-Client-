@@ -32,12 +32,19 @@ export const useRestaurantStore = create()(
           set({ loading: false });
         }
       },
-
       getRestaurant: async () => {
         try {
           set({ loading: true });
           const response = await axios.get(`${API_END_POINT}/`);
-        } catch (error) {}
+          if (response.data.success) {
+            set({ loading: false, restaurant: response.data.restaurant });
+          }
+        } catch (error: any) {
+          if (error.response.status === 404) {
+            set({ restaurant: null });
+          }
+          set({ loading: false });
+        }
       },
     }),
 
