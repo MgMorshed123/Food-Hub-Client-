@@ -3,6 +3,7 @@ import axios from "axios";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { toast } from "sonner";
+import { MenuItem } from "@/types/restaurantType";
 
 const API_END_POINT = "http://localhost:4000/api/v1/restaurant";
 
@@ -95,6 +96,24 @@ export const useRestaurantStore = create()(
             ? { ...state.restaurant, menus: [...state.restaurant.menus, menu] }
             : null,
         }));
+      },
+
+      updateMenuToRestaurant: (updatedMenu: MenuItem) => {
+        set((state: any) => {
+          if (state.restaurant) {
+            const updatedMenuList = state.restaurant.menus.map((menu: any) =>
+              menu._id === updatedMenu._id ? updatedMenu : menu
+            );
+            return {
+              restaurant: {
+                ...state.restaurant,
+                menus: updatedMenuList,
+              },
+            };
+          }
+          // if state.restaruant is undefined then return state
+          return state;
+        });
       },
     }),
 
