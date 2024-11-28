@@ -64,6 +64,30 @@ export const useRestaurantStore = create()(
           set({ loading: false });
         }
       },
+
+      searchRestaurant: async (
+        searchText: string,
+        searchQuery: string,
+        selectedCuisines: any
+      ) => {
+        try {
+          set({ loading: true });
+
+          const params = new URLSearchParams();
+          params.set("searchQuery", searchQuery);
+          params.set("selectedCuisines", selectedCuisines.join(","));
+
+          // await new Promise((resolve) => setTimeout(resolve, 2000));
+          const response = await axios.get(
+            `${API_END_POINT}/search/${searchText}?${params.toString()}`
+          );
+          if (response.data.success) {
+            set({ loading: false, searchedRestaurant: response.data });
+          }
+        } catch (error) {
+          set({ loading: false });
+        }
+      },
     }),
 
     { name: "restaurant", storage: createJSONStorage(() => localStorage) }
