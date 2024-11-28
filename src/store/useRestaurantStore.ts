@@ -88,6 +88,14 @@ export const useRestaurantStore = create()(
           set({ loading: false });
         }
       },
+
+      addMenuToRestaurant: (menu: MenuItem) => {
+        set((state: any) => ({
+          restaurant: state.restaurant
+            ? { ...state.restaurant, menus: [...state.restaurant.menus, menu] }
+            : null,
+        }));
+      },
     }),
 
     { name: "restaurant", storage: createJSONStorage(() => localStorage) }
