@@ -115,6 +115,27 @@ export const useRestaurantStore = create()(
           return state;
         });
       },
+
+      setAppliedFilter: (value: string) => {
+        set((state) => {
+          const isAlreadyApplied = state.appliedFilter.includes(value);
+          const updatedFilter = isAlreadyApplied
+            ? state.appliedFilter.filter((item) => item !== value)
+            : [...state.appliedFilter, value];
+          return { appliedFilter: updatedFilter };
+        });
+      },
+      resetAppliedFilter: () => {
+        set({ appliedFilter: [] });
+      },
+      getSingleRestaurant: async (restaurantId: string) => {
+        try {
+          const response = await axios.get(`${API_END_POINT}/${restaurantId}`);
+          if (response.data.success) {
+            set({ singleRestaurant: response.data.restaurant });
+          }
+        } catch (error) {}
+      },
     }),
 
     { name: "restaurant", storage: createJSONStorage(() => localStorage) }
