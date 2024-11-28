@@ -136,6 +136,42 @@ export const useRestaurantStore = create()(
           }
         } catch (error) {}
       },
+
+      getRestaurantOrders: async () => {
+        try {
+          const response = await axios.get(`${API_END_POINT}/order`);
+          if (response.data.success) {
+            set({ restaurantOrder: response.data.orders });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      updateRestaurantOrder: async (orderId: string, status: string) => {
+        try {
+          const response = await axios.put(
+            `${API_END_POINT}/order/${orderId}/status`,
+            { status },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.data.success) {
+            const updatedOrder = get().restaurantOrder.map((order: Orders) => {
+              return order._id === orderId
+                ? { ...order, status: response.data.status }
+                : order;
+            });
+            set({ restaurantOrder: updatedOrder });
+            toast.success(response.data.message);
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+        }
+      },
     }),
 
     { name: "restaurant", storage: createJSONStorage(() => localStorage) }
