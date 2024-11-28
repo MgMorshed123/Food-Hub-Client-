@@ -46,6 +46,24 @@ export const useRestaurantStore = create()(
           set({ loading: false });
         }
       },
+
+      updateRestaurant: async (formData: FormData) => {
+        try {
+          set({ loading: true });
+          const response = await axios.put(`${API_END_POINT}/`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          if (response.data.success) {
+            toast.success(response.data.message);
+            set({ loading: false });
+          }
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+          set({ loading: false });
+        }
+      },
     }),
 
     { name: "restaurant", storage: createJSONStorage(() => localStorage) }
