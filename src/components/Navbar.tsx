@@ -37,17 +37,15 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { Separator } from "./ui/separator";
-import { useState } from "react";
+import { useUserStore } from "@/store/useUserStore";
+// import { useCartStore } from "@/store/useCartStore";
+// import { useThemeStore } from "@/store/useThemeStore";
 
 const Navbar = () => {
-  // const { user, loading, logout } = useState();
-
-  const user = true;
-  const logout = true;
-  const loading = false;
+  const { user, loading, logout } = useUserStore();
+  // const { cart } = useCartStore();
   // const { setTheme } = useThemeStore();
 
-  const setTheme = "nj";
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
@@ -60,7 +58,7 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link>
             <Link to="/order/status">Order</Link>
 
-            {user && (
+            {user?.admin && (
               <Menubar>
                 <MenubarMenu>
                   <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -89,10 +87,14 @@ const Navbar = () => {
                     <span className="sr-only">Toggle theme</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Light</DropdownMenuItem>
-                  <DropdownMenuItem>Dark</DropdownMenuItem>
-                </DropdownMenuContent>
+                {/* <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                  </DropdownMenuItem>
+                </DropdownMenuContent> */}
               </DropdownMenu>
             </div>
             <Link to="/cart" className="relative cursor-pointer">
@@ -108,7 +110,7 @@ const Navbar = () => {
             </Link>
             <div>
               <Avatar>
-                <AvatarImage src={""} alt="profilephoto" />
+                <AvatarImage src={user?.profilePicture} alt="profilephoto" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </div>
@@ -119,7 +121,10 @@ const Navbar = () => {
                   Please wait
                 </Button>
               ) : (
-                <Button className="bg-orange hover:bg-hoverOrange">
+                <Button
+                  onClick={logout}
+                  className="bg-orange hover:bg-hoverOrange"
+                >
                   Logout
                 </Button>
               )}
@@ -138,11 +143,8 @@ const Navbar = () => {
 export default Navbar;
 
 const MobileNavbar = () => {
-  const user = true;
-  const logout = false;
-  const loading = false;
+  const { user, logout, loading } = useUserStore();
   // const { setTheme } = useThemeStore();
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -165,10 +167,14 @@ const MobileNavbar = () => {
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>Light</DropdownMenuItem>
-              <DropdownMenuItem>Dark</DropdownMenuItem>
-            </DropdownMenuContent>
+            {/* <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+            </DropdownMenuContent> */}
           </DropdownMenu>
         </SheetHeader>
         <Separator className="my-2" />
@@ -194,7 +200,7 @@ const MobileNavbar = () => {
             <ShoppingCart />
             <span>Cart (0)</span>
           </Link>
-          {user && (
+          {user?.admin && (
             <>
               <Link
                 to="/admin/menu"
@@ -223,7 +229,7 @@ const MobileNavbar = () => {
         <SheetFooter className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-2">
             <Avatar>
-              <AvatarImage src={""} />
+              <AvatarImage src={user?.profilePicture} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <h1 className="font-bold">Patel Mernstack</h1>
@@ -235,7 +241,12 @@ const MobileNavbar = () => {
                 Please wait
               </Button>
             ) : (
-              <Button className="bg-orange hover:bg-hoverOrange">Logout</Button>
+              <Button
+                onClick={logout}
+                className="bg-orange hover:bg-hoverOrange"
+              >
+                Logout
+              </Button>
             )}
           </SheetClose>
         </SheetFooter>
