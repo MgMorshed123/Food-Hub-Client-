@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { useRestaurantStore } from "./useRestaurantStore";
 
-const API_END_POINT = "https://food-app-yt.onrender.com/api/v1/menu";
+const API_END_POINT = "http://localhost:4000/api/v1/menu";
 axios.defaults.withCredentials = true;
 
 type MenuState = {
@@ -30,11 +30,13 @@ export const useMenuStore = create<MenuState>()(
           if (response.data.success) {
             toast.success(response.data.message);
             set({ loading: false, menu: response.data.menu });
+            console.log(response);
           }
           // update restaurant
           useRestaurantStore.getState().addMenuToRestaurant(response.data.menu);
         } catch (error: any) {
           toast.error(error.response.data.message);
+          console.log(error);
           set({ loading: false });
         }
       },

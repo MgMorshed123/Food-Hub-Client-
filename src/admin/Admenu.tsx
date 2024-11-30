@@ -12,12 +12,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Plus } from "lucide-react";
 import React, { FormEvent, useState } from "react";
-// import EditMenu from "./EditMenu";
-
-// import { useMenuStore } from "@/store/useMenuStore";
-// import { useRestaurantStore } from "@/store/useRestaurantStore";
 import EditMenu from "./EditMenu";
 import { MenuFormSchema, menuSchema } from "@/schema/menuSchema";
+import { useMenuStore } from "@/store/useMenuStore";
+import { useRestaurantStore } from "@/store/useRestaurantStore";
 
 const AddMenu = () => {
   const [input, setInput] = useState<MenuFormSchema>({
@@ -30,48 +28,9 @@ const AddMenu = () => {
   const [editOpen, setEditOpen] = useState<boolean>(false);
   const [selectedMenu, setSelectedMenu] = useState<any>();
   const [error, setError] = useState<Partial<MenuFormSchema>>({});
-  const { loading, createMenu } = useState();
-  //   const { restaurant } = useState();
-
-  const restaurant = {
-    menus: [
-      {
-        image: "https://via.placeholder.com/150",
-        name: "Spaghetti Carbonara",
-        description:
-          "A classic Italian pasta dish with creamy sauce, pancetta, and parmesan.",
-        price: 80,
-      },
-      {
-        image: "https://via.placeholder.com/150", // Replace with actual image URL
-        name: "Margherita Pizza",
-        description:
-          "Traditional pizza topped with fresh tomatoes, mozzarella, and basil.",
-        price: 100,
-      },
-      {
-        image: "https://via.placeholder.com/150", // Replace with actual image URL
-        name: "Caesar Salad",
-        description:
-          "Crisp romaine lettuce tossed with Caesar dressing, croutons, and parmesan.",
-        price: 60,
-      },
-      {
-        image: "https://via.placeholder.com/150", // Replace with actual image URL
-        name: "Grilled Chicken Sandwich",
-        description:
-          "Juicy grilled chicken with lettuce, tomato, and aioli in a toasted bun.",
-        price: 90,
-      },
-      {
-        image: "https://via.placeholder.com/150", // Replace with actual image URL
-        name: "Chocolate Lava Cake",
-        description:
-          "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.",
-        price: 70,
-      },
-    ],
-  };
+  const { loading, createMenu } = useMenuStore();
+  const { restaurant } = useRestaurantStore();
+  console.log("restaurant", restaurant);
 
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
@@ -120,7 +79,11 @@ const AddMenu = () => {
                 Create a menu that will make your restaurant stand out.
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={submitHandler} className="space-y-4">
+            <form
+              onSubmit={submitHandler}
+              className="space-y-4 "
+              // enctype="multipart/form-data"
+            >
               <div>
                 <Label>Name</Label>
                 <Input
@@ -200,7 +163,6 @@ const AddMenu = () => {
           </DialogContent>
         </Dialog>
       </div>
-
       {restaurant?.menus.map((menu: any, idx: number) => (
         <div key={idx} className="mt-6 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center md:space-x-4 md:p-4 p-2 shadow-md rounded-lg border">
@@ -231,7 +193,6 @@ const AddMenu = () => {
           </div>
         </div>
       ))}
-
       <EditMenu
         selectedMenu={selectedMenu}
         editOpen={editOpen}
