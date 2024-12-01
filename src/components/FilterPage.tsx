@@ -17,7 +17,7 @@ const filterOptions: FilterOptionsState[] = [
 ];
 
 const FilterPage = () => {
-  const { setAppliedFilter } = useRestaurantStore();
+  const { setAppliedFilter, resetAppliedFilter } = useRestaurantStore();
 
   const appliedFilterHandler = (value: string) => {
     setAppliedFilter(value);
@@ -27,7 +27,9 @@ const FilterPage = () => {
     <div className="md:w-32">
       <div className="flex items-center justify-between">
         <h1 className="font-medium text-lg">Filter By Cusine </h1>
-        <Button variant={"link"}>Reset</Button>
+        <Button onClick={resetAppliedFilter} variant={"link"}>
+          Reset
+        </Button>
       </div>
       {filterOptions.map((option) => (
         <div key={option.id} className="flex items-center space-x-2 my-5">

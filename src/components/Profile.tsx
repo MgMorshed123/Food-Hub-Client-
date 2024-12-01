@@ -11,18 +11,11 @@ import { FormEvent, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-// import { useUserStore } from "@/store/useUserStore";
+import { useUserStore } from "@/store/useUserStore";
 
 const Profile = () => {
-  //   const { user, updateProfile } = useUserStore();
-  const user = {
-    fullname: "as",
-    email: "n",
-    address: "j",
-    city: "",
-    country: "",
-    profilePicture: "",
-  };
+  const { user, updateProfile } = useUserStore();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [profileData, setProfileData] = useState({
     fullname: user?.fullname || "",
@@ -62,7 +55,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      //   await updateProfile(profileData);
+      await updateProfile(profileData);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
