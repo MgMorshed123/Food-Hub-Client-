@@ -20,6 +20,7 @@ const Cart = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const { cart, decrementQuantity, incrementQuantity } = useCartStore();
+
   let totalAmount = cart.reduce((acc, ele) => {
     return acc + ele.price * ele.quantity;
   }, 0);
@@ -91,7 +92,7 @@ const Cart = () => {
         <TableFooter>
           <TableRow className="text-2xl font-bold">
             <TableCell colSpan={5}>Total</TableCell>
-            <TableCell className="text-right"> </TableCell>
+            <TableCell className="text-right">{totalAmount} </TableCell>
           </TableRow>
         </TableFooter>
       </Table>
