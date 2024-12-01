@@ -39,12 +39,13 @@ import {
 import { Separator } from "./ui/separator";
 import { useUserStore } from "@/store/useUserStore";
 import { useCartStore } from "@/store/useCartStore";
+import { useThemeStore } from "@/store/useThemeStore";
 // import { useThemeStore } from "@/store/useThemeStore";
 
 const Navbar = () => {
   const { user, loading, logout } = useUserStore();
   const { cart } = useCartStore();
-  // const { setTheme } = useThemeStore();
+  const { setTheme } = useThemeStore();
 
   // console.log(user logout);
 
@@ -89,14 +90,14 @@ const Navbar = () => {
                     <span className="sr-only">Toggle theme</span>
                   </Button>
                 </DropdownMenuTrigger>
-                {/* <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => setTheme("light")}>
                     Light
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setTheme("dark")}>
                     Dark
                   </DropdownMenuItem>
-                </DropdownMenuContent> */}
+                </DropdownMenuContent>
               </DropdownMenu>
             </div>
             <Link to="/cart" className="relative cursor-pointer">

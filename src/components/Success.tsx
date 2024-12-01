@@ -2,47 +2,16 @@ import { IndianRupee } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-// import { useOrderStore } from "@/store/useOrderStore";
+import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect } from "react";
-// import { CartItem } from "@/types/cartType";
+import { CartItem } from "@/types/cartType";
 
 const Success = () => {
-  //   const { orders, getOrderDetails } = useOrderStore();
+  const { orders, getOrderDetails } = useOrderStore();
 
-  //   useEffect(() => {
-  //     getOrderDetails();
-  //   }, []);
-
-  const orders = [
-    {
-      cartItems: [
-        {
-          image: "https://via.placeholder.com/150", // URL to the product image
-          name: "Product 1", // Name of the product
-          price: 100, // Price of the product
-        },
-        {
-          image: "https://via.placeholder.com/150",
-          name: "Product 2",
-          price: 150,
-        },
-      ],
-    },
-    {
-      cartItems: [
-        {
-          image: "https://via.placeholder.com/150",
-          name: "Product 3",
-          price: 200,
-        },
-        {
-          image: "https://via.placeholder.com/150",
-          name: "Product 4",
-          price: 250,
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    getOrderDetails();
+  }, []);
 
   if (orders.length === 0)
     return (
