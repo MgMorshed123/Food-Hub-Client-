@@ -13,16 +13,16 @@ import {
 import { useState } from "react";
 import CheckoutConfirmPage from "./CheckoutConfirmPage";
 // import CheckoutConfirmPage from "./CheckoutConfirmPage";
-// import { useCartStore } from "@/store/useCartStore";
-// import { CartItem } from "@/types/cartType";
+import { useCartStore } from "@/store/useCartStore";
+import { CartItem } from "@/types/cartType";
 
 const Cart = () => {
   const [open, setOpen] = useState<boolean>(false);
 
-  //   const { cart, decrementQuantity, incrementQuantity } = useCartStore();
-  //   let totalAmount = cart.reduce((acc, ele) => {
-  //     return acc + ele.price * ele.quantity;
-  //   }, 0);
+  const { cart, decrementQuantity, incrementQuantity } = useCartStore();
+  let totalAmount = cart.reduce((acc, ele) => {
+    return acc + ele.price * ele.quantity;
+  }, 0);
 
   return (
     <div className="flex flex-col max-w-7xl mx-auto my-10">
@@ -41,7 +41,7 @@ const Cart = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {/* {cart.map((item: CartItem) => (
+          {cart.map((item: CartItem) => (
             <TableRow>
               <TableCell>
                 <Avatar>
@@ -54,7 +54,7 @@ const Cart = () => {
               <TableCell>
                 <div className="w-fit flex items-center rounded-full border border-gray-100 dark:border-gray-800 shadow-md">
                   <Button
-                  onClick={() => decrementQuantity(item._id)}
+                    onClick={() => decrementQuantity(item._id)}
                     size={"icon"}
                     variant={"outline"}
                     className="rounded-full bg-gray-200"
@@ -70,7 +70,7 @@ const Cart = () => {
                     {item.quantity}
                   </Button>
                   <Button
-                  onClick={() => incrementQuantity(item._id)}
+                    onClick={() => incrementQuantity(item._id)}
                     size={"icon"}
                     className="rounded-full bg-orange hover:bg-hoverOrange"
                     variant={"outline"}
@@ -86,7 +86,7 @@ const Cart = () => {
                 </Button>
               </TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
         <TableFooter>
           <TableRow className="text-2xl font-bold">
