@@ -22,7 +22,6 @@ export const useCartStore = create<CartState>()(
               ),
             };
           } else {
-            // add cart
             return {
               cart: [...state.cart, { ...item, quantity: 1 }],
             };

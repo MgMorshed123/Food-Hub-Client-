@@ -38,12 +38,12 @@ import {
 } from "./ui/sheet";
 import { Separator } from "./ui/separator";
 import { useUserStore } from "@/store/useUserStore";
-// import { useCartStore } from "@/store/useCartStore";
+import { useCartStore } from "@/store/useCartStore";
 // import { useThemeStore } from "@/store/useThemeStore";
 
 const Navbar = () => {
   const { user, loading, logout } = useUserStore();
-  // const { cart } = useCartStore();
+  const { cart } = useCartStore();
   // const { setTheme } = useThemeStore();
 
   // console.log(user logout);
@@ -101,14 +101,14 @@ const Navbar = () => {
             </div>
             <Link to="/cart" className="relative cursor-pointer">
               <ShoppingCart />
-              {/* {cart.length > 0 && (
+              {cart.length > 0 && (
                 <Button
                   size={"icon"}
                   className="absolute -inset-y-3 left-2 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
                 >
                   {cart.length}
                 </Button>
-              )} */}
+              )}
             </Link>
             <div>
               <Avatar>
