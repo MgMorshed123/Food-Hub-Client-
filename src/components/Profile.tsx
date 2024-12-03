@@ -15,7 +15,6 @@ import { useUserStore } from "@/store/useUserStore";
 
 const Profile = () => {
   const { user, updateProfile } = useUserStore();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [profileData, setProfileData] = useState({
     fullname: user?.fullname || "",

@@ -17,7 +17,7 @@ const Orders = () => {
   const handleStatusChange = async (id: string, status: string) => {
     await updateRestaurantOrder(id, status);
   };
-  console.log(restaurantOrder);
+
   useEffect(() => {
     getRestaurantOrders();
   }, []);

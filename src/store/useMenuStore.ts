@@ -30,7 +30,6 @@ export const useMenuStore = create<MenuState>()(
           if (response.data.success) {
             toast.success(response.data.message);
             set({ loading: false, menu: response.data.menu });
-            console.log(response);
           }
           // update restaurant
           useRestaurantStore.getState().addMenuToRestaurant(response.data.menu);

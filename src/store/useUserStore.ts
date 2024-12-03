@@ -101,7 +101,6 @@ export const useUserStore = create<UserState>()(
             }
           );
           if (response.data.success) {
-            console.log(response.data.success);
             toast.success(response.data.message);
             set({
               loading: false,
@@ -181,7 +180,7 @@ export const useUserStore = create<UserState>()(
             input,
             {
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
               },
             }
           );

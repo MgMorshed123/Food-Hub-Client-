@@ -33,7 +33,6 @@ const Restaurant = () => {
     getRestaurant,
   } = useRestaurantStore();
 
-  console.log(restaurant);
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     /* imp */
     const { name, value, type } = e.target;
@@ -68,16 +67,13 @@ const Restaurant = () => {
         // create
         await createRestaurant(formData);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       await getRestaurant();
       if (restaurant) {
-        console.log("restaurant", restaurant);
         setInput({
           restaurantName: restaurant.restaurantName || "",
           city: restaurant.city || "",
@@ -91,7 +87,6 @@ const Restaurant = () => {
       }
     };
     fetchRestaurant();
-    console.log(restaurant);
   }, []);
 
   return (
