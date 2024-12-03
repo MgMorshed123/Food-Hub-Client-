@@ -12,19 +12,17 @@ import {
 } from "./ui/table";
 import { useState } from "react";
 import CheckoutConfirmPage from "./CheckoutConfirmPage";
-// import CheckoutConfirmPage from "./CheckoutConfirmPage";
 import { useCartStore } from "@/store/useCartStore";
 import { CartItem } from "@/types/cartType";
 
 const Cart = () => {
   const [open, setOpen] = useState<boolean>(false);
-
-  const { cart, decrementQuantity, incrementQuantity } = useCartStore();
+  const { cart, decrementQuantity, incrementQuantity, removeFromTheCart } =
+    useCartStore();
 
   let totalAmount = cart.reduce((acc, ele) => {
     return acc + ele.price * ele.quantity;
   }, 0);
-
   return (
     <div className="flex flex-col max-w-7xl mx-auto my-10">
       <div className="flex justify-end">
@@ -82,7 +80,11 @@ const Cart = () => {
               </TableCell>
               <TableCell>{item.price * item.quantity}</TableCell>
               <TableCell className="text-right">
-                <Button size={"sm"} className="bg-orange hover:bg-hoverOrange">
+                <Button
+                  onClick={() => removeFromTheCart(item._id)}
+                  size={"sm"}
+                  className="bg-orange hover:bg-hoverOrange"
+                >
                   Remove
                 </Button>
               </TableCell>
@@ -92,7 +94,7 @@ const Cart = () => {
         <TableFooter>
           <TableRow className="text-2xl font-bold">
             <TableCell colSpan={5}>Total</TableCell>
-            <TableCell className="text-right">{totalAmount} </TableCell>
+            <TableCell className="text-right">{totalAmount}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

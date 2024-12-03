@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRestaurantStore } from "@/store/useRestaurantStore";
-
 import { useEffect } from "react";
 
 const Orders = () => {
@@ -18,6 +17,7 @@ const Orders = () => {
   const handleStatusChange = async (id: string, status: string) => {
     await updateRestaurantOrder(id, status);
   };
+  console.log(restaurantOrder);
   useEffect(() => {
     getRestaurantOrders();
   }, []);
@@ -27,6 +27,7 @@ const Orders = () => {
         Orders Overview
       </h1>
       <div className="space-y-8">
+        {/* Restaurant Orders diplay here  */}
         {restaurantOrder.map((order) => (
           <div className="flex flex-col md:flex-row justify-between items-start sm:items-center bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700">
             <div className="flex-1 mb-6 sm:mb-0">
@@ -38,8 +39,12 @@ const Orders = () => {
                 {order.deliveryDetails.address}
               </p>
               <p className="text-gray-600 dark:text-gray-400 mt-2">
-                <span className="font-semibold">Total Amount: </span>
-                {order.totalAmount / 100}
+                <span className="font-semibold">
+                  Total Amount:{" "}
+                  {order.cartItems.map((item) => (
+                    <span> {item.price * item.quantity}</span>
+                  ))}{" "}
+                </span>
               </p>
             </div>
             <div className="w-full sm:w-1/3">

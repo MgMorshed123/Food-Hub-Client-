@@ -33,6 +33,7 @@ const Restaurant = () => {
     getRestaurant,
   } = useRestaurantStore();
 
+  console.log(restaurant);
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     /* imp */
     const { name, value, type } = e.target;

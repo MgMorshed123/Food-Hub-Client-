@@ -1,13 +1,16 @@
-import { IndianRupee } from "lucide-react";
+import { DollarSign, IndianRupee } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect } from "react";
 import { CartItem } from "@/types/cartType";
+// import Orders from "@/admin/Orders";
 
 const Success = () => {
   const { orders, getOrderDetails } = useOrderStore();
+
+  console.log(orders);
 
   useEffect(() => {
     getOrderDetails();
@@ -26,9 +29,17 @@ const Success = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 px-4">
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 max-w-lg w-full">
         <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-            Order Status:{" "}
-            <span className="text-[#FF5A5A]">{"confirm".toUpperCase()}</span>
+          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+            Payment Status:{" "}
+            <span className="text-[#FF5A5A]">
+              {"Payment Done".toUpperCase()}
+            </span>
+          </h1>
+          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+            Delivery Status:{" "}
+            <span className="text-[#FF5A5A]">
+              {orders[0].status.toUpperCase()}
+            </span>
           </h1>
         </div>
         <div className="mb-6">
@@ -53,9 +64,10 @@ const Success = () => {
                     </div>
                     <div className="text-right">
                       <div className="text-gray-800 dark:text-gray-200 flex items-center">
-                        <IndianRupee />
+                        <DollarSign />
+
                         <span className="text-lg font-medium">
-                          {item.price}
+                          {item.price * item.quantity}
                         </span>
                       </div>
                     </div>

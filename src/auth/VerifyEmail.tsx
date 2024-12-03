@@ -6,10 +6,11 @@ import { FormEvent, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const VerifyEmail = () => {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);
 
   const inputRef = useRef<any>([]);
-  const navigate = useNavigate();
+
   const { loading, verifyEmail } = useUserStore();
 
   const handleChange = (index: number, value: string) => {
@@ -36,8 +37,9 @@ const VerifyEmail = () => {
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const verificationCode: string = otp.join("");
-    console.log(verificationCode);
+    // console.log(verificationCode);
     await verifyEmail(verificationCode);
+    navigate("/");
   };
 
   return (

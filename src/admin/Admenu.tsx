@@ -30,8 +30,12 @@ const AddMenu = () => {
   const [error, setError] = useState<Partial<MenuFormSchema>>({});
   const { loading, createMenu } = useMenuStore();
   const { restaurant } = useRestaurantStore();
-  console.log("restaurant", restaurant);
+  console.log(restaurant);
 
+  // const { menu } = useMenuStore();
+  // console.log(menu);
+
+  // console.log("restaurant", restaurant);
   const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
     setInput({ ...input, [name]: type === "number" ? Number(value) : value });
@@ -55,6 +59,7 @@ const AddMenu = () => {
         formData.append("image", input.image);
       }
       await createMenu(formData);
+      setOpen(false);
     } catch (error) {
       console.log(error);
     }

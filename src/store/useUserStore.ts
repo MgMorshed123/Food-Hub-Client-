@@ -4,6 +4,7 @@ import axios from "axios";
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
 import { Fallback } from "@radix-ui/react-avatar";
+import { useNavigate } from "react-router-dom";
 
 const API_END_POINT = "http://localhost:4000/api/v1/user";
 axios.defaults.withCredentials = true;
@@ -52,7 +53,9 @@ export const useUserStore = create<UserState>()(
             },
           });
           if (response.data.success) {
+            // response.data.message
             toast.success(response.data.message);
+
             set({
               loading: false,
               user: response.data.user,
@@ -98,6 +101,7 @@ export const useUserStore = create<UserState>()(
             }
           );
           if (response.data.success) {
+            console.log(response.data.success);
             toast.success(response.data.message);
             set({
               loading: false,

@@ -40,28 +40,26 @@ import { Separator } from "./ui/separator";
 import { useUserStore } from "@/store/useUserStore";
 import { useCartStore } from "@/store/useCartStore";
 import { useThemeStore } from "@/store/useThemeStore";
-// import { useThemeStore } from "@/store/useThemeStore";
 
 const Navbar = () => {
   const { user, loading, logout } = useUserStore();
   const { cart } = useCartStore();
   const { setTheme } = useThemeStore();
 
-  // console.log(user logout);
+  console.log(user);
 
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
         <Link to="/">
-          <h1 className="font-bold md:font-extrabold text-2xl">PatelEats</h1>
+          <h1 className="font-bold md:font-extrabold text-2xl">FoodHub</h1>
         </Link>
         <div className="hidden md:flex items-center gap-10">
           <div className="hidden md:flex items-center gap-6">
             <Link to="/">Home</Link>
             <Link to="/profile">Profile</Link>
-            <Link to="/order/status">Order</Link>
 
-            {user?.admin && (
+            {user?.admin ? (
               <Menubar>
                 <MenubarMenu>
                   <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -78,6 +76,8 @@ const Navbar = () => {
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
+            ) : (
+              <Link to="/order/status">Order</Link>
             )}
           </div>
           <div className="flex items-center gap-4">
@@ -147,7 +147,8 @@ export default Navbar;
 
 const MobileNavbar = () => {
   const { user, logout, loading } = useUserStore();
-  // const { setTheme } = useThemeStore();
+  const { setTheme } = useThemeStore();
+  const { cart } = useCartStore();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -161,7 +162,7 @@ const MobileNavbar = () => {
       </SheetTrigger>
       <SheetContent className="flex flex-col">
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
-          <SheetTitle>PatelEats</SheetTitle>
+          <SheetTitle>FoodHub</SheetTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -170,14 +171,14 @@ const MobileNavbar = () => {
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </DropdownMenuTrigger>
-            {/* <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => setTheme("light")}>
                 Light
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme("dark")}>
                 Dark
               </DropdownMenuItem>
-            </DropdownMenuContent> */}
+            </DropdownMenuContent>
           </DropdownMenu>
         </SheetHeader>
         <Separator className="my-2" />
@@ -198,10 +199,20 @@ const MobileNavbar = () => {
           </Link>
           <Link
             to="/cart"
-            className="flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium"
+            className="relative flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium"
           >
             <ShoppingCart />
-            <span>Cart (0)</span>
+            <span>Cart</span>
+
+            {cart.length > 0 && (
+              <Button
+                size={"icon"}
+                className="absolute inset-y-1 left-8
+                 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
+              >
+                {cart.length}
+              </Button>
+            )}
           </Link>
           {user?.admin && (
             <>
@@ -233,9 +244,8 @@ const MobileNavbar = () => {
           <div className="flex flex-row items-center gap-2">
             <Avatar>
               <AvatarImage src={user?.profilePicture} />
-              <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <h1 className="font-bold">Patel Mernstack</h1>
+            <h1 className="font-bold">{user?.fullname}</h1>
           </div>
           <SheetClose asChild>
             {loading ? (
