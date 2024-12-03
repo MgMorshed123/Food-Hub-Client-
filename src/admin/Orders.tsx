@@ -18,6 +18,8 @@ const Orders = () => {
     await updateRestaurantOrder(id, status);
   };
 
+  console.log(restaurantOrder);
+
   useEffect(() => {
     getRestaurantOrders();
   }, []);
@@ -36,7 +38,7 @@ const Orders = () => {
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-2">
                 <span className="font-semibold">Address: </span>
-                {order.deliveryDetails.address}
+                {order?.user?.address} ,{order?.user?.city}
               </p>
               <p className="text-gray-600 dark:text-gray-400 mt-2">
                 <span className="font-semibold">

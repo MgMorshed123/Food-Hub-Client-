@@ -10,24 +10,32 @@ export type FilterOptionsState = {
 };
 // agar applied filter k andr ye item exixt krta hia toh iska mtlb checked hai
 const filterOptions: FilterOptionsState[] = [
-  { id: "burger", label: "Burger" },
-  { id: "thali", label: "Thali" },
-  { id: "biryani", label: "Biryani" },
+  { id: "Salad", label: "Salad" },
+  { id: "Sandwich", label: "Sandwich" },
+  { id: "Rolls", label: "Rolls" },
   { id: "momos", label: "Momos" },
 ];
 
 const FilterPage = () => {
-  const { setAppliedFilter, resetAppliedFilter } = useRestaurantStore();
+  const { setAppliedFilter, resetAppliedFilter, appliedFilter } =
+    useRestaurantStore();
 
   const appliedFilterHandler = (value: string) => {
     setAppliedFilter(value);
   };
 
+  console.log(appliedFilter);
   return (
     <div className="md:w-32">
       <div className="flex items-center justify-between">
         <h1 className="font-medium text-lg">Filter By Cusine </h1>
-        <Button onClick={resetAppliedFilter} variant={"link"}>
+        <Button
+          onClick={resetAppliedFilter}
+          variant={"link"}
+          className={`${
+            appliedFilter.length > 0 ? "bg-red-500" : "bg-black text-white"
+          }`}
+        >
           Reset
         </Button>
       </div>

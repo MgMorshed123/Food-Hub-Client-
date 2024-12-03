@@ -140,7 +140,7 @@ const appRouter = createBrowserRouter([
     ),
   },
   {
-    path: "/reset-password",
+    path: "/reset-password/:token",
     element: <ResetPassword></ResetPassword>,
   },
   {
