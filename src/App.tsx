@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Button } from "./components/ui/button";
 import Login from "./auth/login";
 import {
   createBrowserRouter,
@@ -12,7 +11,6 @@ import SignUp from "./auth/SignUp";
 import ForgotPassword from "./auth/ForgotPassword";
 import ResetPassword from "./auth/ResetPassword";
 import VerifyEmail from "./auth/VerifyEmail";
-import Navbar from "./components/Navbar";
 import HereSection from "./components/HeroSection";
 import Profile from "./components/Profile";
 import SearchPage from "./components/SearchPage";

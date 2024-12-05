@@ -14,7 +14,8 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   console.log(token);
 
-  const API_END_POINT = "http://localhost:4000/api/v1/user/reset-password";
+  const API_END_POINT =
+    "https://food0-hub.onrender.com/api/v1/user/reset-password";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -4,13 +4,13 @@ import axios from "axios";
 import { Loader2, Mail } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { set } from "zod";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const API_END_POINT = "http://localhost:4000/api/v1/user/forgot-password";
+  const API_END_POINT =
+    "https://food0-hub.onrender.com/api/v1/user/forgot-password";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

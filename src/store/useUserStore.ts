@@ -3,10 +3,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import axios from "axios";
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
-import { Fallback } from "@radix-ui/react-avatar";
-import { useNavigate } from "react-router-dom";
 
-const API_END_POINT = "http://localhost:4000/api/v1/user";
+const API_END_POINT = "https://food0-hub.onrender.com/api/v1/user";
 axios.defaults.withCredentials = true;
 
 type User = {
