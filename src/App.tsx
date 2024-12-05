@@ -21,7 +21,7 @@ import Orders from "./admin/Orders";
 import Success from "./components/Success";
 import { useUserStore } from "./store/useUserStore";
 import Loading from "./components/Loading";
-
+// router removed
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
   if (!isAuthenticated) {
