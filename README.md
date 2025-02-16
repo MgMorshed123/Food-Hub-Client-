@@ -1,51 +1,98 @@
-# React + TypeScript + Vite
+# 🍽️ The Food Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Overview
+The Food Hub is a full-stack food delivery application that allows users to explore restaurants, add menu items to their cart, check out seamlessly, and track orders in real-time. Admins can manage restaurants, menus, and order statuses, ensuring a smooth experience for users.
+![image](https://github.com/user-attachments/assets/71e4df89-4a52-44ad-81ae-3657cf38c742)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔐 Default Credentials
 
-## Expanding the ESLint configuration
+### Admin User:
+📧 Email: `nayem@gmail.com`  
+🔑 Password: `12345678`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Normal User:
+📧 Email: `labibw234@gmail.com`  
+🔑 Password: `123456`
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠 Tech Stack
+
+### Frontend:
+- ⚛️ **React** (TypeScript)
+- 🗄 **Zustand** (State Management)
+- 🚏 **React Router DOM** (Routing)
+- 🎨 **Tailwind CSS** + **ShadCn** (UI Styling)
+- 🏃 **Framer Motion** (Animations)
+- 🎨 **CSS** (Additional Styling)
+
+### Backend:
+- 🌐 **Node.js** + **Express.js** (Server-Side Logic)
+- 🗄 **MongoDB** + **Mongoose** (Database)
+- 🔐 **JWT** (Authentication)
+- ☁️ **Cloudinary** (Image Uploads)
+- 📦 **Multer** (File Handling)
+
+---
+
+## ✨ Features
+
+### 🛍 For Normal Users:
+✅ Explore restaurants and view detailed menus  
+✅ Add items to cart and proceed to checkout  
+✅ Track orders in real-time  
+✅ Search for menus or restaurants  
+✅ Update personal profiles for a customized experience  
+
+### 🔧 For Admins:
+✅ Create and update restaurant details  
+✅ Add, edit, or remove menu items  
+✅ Update order statuses to keep users informed  
+
+---
+
+## 📸 Screenshots
+(Include relevant images here)
+
+---
+
+## 🚀 Getting Started
+
+### 🔽 Clone the Repository
+```sh
+git clone https://github.com/your-repo-url.git
+cd food-hub
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 📦 Install Dependencies
+#### Frontend
+```sh
+cd client
+npm install
+npm start
 ```
-"# Food-Hub-Client-" 
+
+#### Backend
+```sh
+cd server
+npm install
+npm start
+```
+
+---
+
+## 🎯 Contributing
+Contributions are welcome! Feel free to submit issues or pull requests to improve the project.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+## 💌 Contact
+
+
